@@ -1,5 +1,5 @@
 ?-------------ANONIM BLOCK 
----daxil edil?n ?d?din t?k v? ya c�t oldu?un ekrana �?xarmaq.
+---daxil edilən ədədin tək və ya cütlüyün yoxlamaq.
 declare
 num number:=&enternumber;
 begin
@@ -10,7 +10,7 @@ DBMS_OUTPUT.PUT_LINE(num||' tek ededdir ');
 end if;
 end;
 ------FUNCTION  
----employees c?dv?lind? s?tirl?rin say?n? ekrana �?xarmaq
+---employees cədvəlində sətirlərin sayını ekrana çıxarmaq
 create or replace function get_count
 return number
 is
@@ -27,7 +27,7 @@ END;
 
 -----------PROCEDURE
 
----departament 100 olan i?�il?rin maa??n?n art?r?lmas? ���n prosedur
+---departament 100 olan işçilərin maaşlarının artırlmasə üçün prosedur
 create or replace procedure pr_second (dep_id_in number,sal_raise_in number) 
 is 
 begin
@@ -40,8 +40,8 @@ execute pr_second(100,200);
 
 
 -------------loop 
-----if l? ??rt verilm?si 
----a>=20 ??rt �d?ndikd? �?x??a verm?si n?z?r? al?naraq  t?k ?d?dl?rin 4 r?q?min? vurulmas? 
+----if ilə şərt verilməsi
+---a>=20 şərt ilə ədədin 4 -ə vurulması 
 declare
 a number:=1;
 b number:=4;
@@ -57,7 +57,7 @@ end;
 
 -------while condition
 
-----8 vurma ?m?li
+----8 vurma əməli
 declare
 a number:=1;
 b number;
