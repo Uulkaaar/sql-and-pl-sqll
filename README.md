@@ -36,12 +36,14 @@ RIGHT(): Mətn sətrinin sağ tərəfindən başlayaraq müəyyən bir sayda sim
 LEN(): Mətn sətrindəki simvolların sayını qaytarır.
 
 LTRIM(): Mətn sətrində əvvələrdəki boşluqları silir.
+MOD() : Ədədin digər ədədə bölünməsindən alınan qalığı tapır.
 
 RTRIM(): Mətn sətrində sonlardakı boşluqları silir.
 
 CONCAT(): İki və ya daha çox mətn sətrini birləşdirir.
 
-SUBSTR() VE S: . Aggregate funksiyalar, SQL-də məlumatların toplanması və təhlil edilməsi üçün istifadə olunan funksiyalardır. Bu funksiyalar, bir məlumat qrupunu birləşdirib bir dəyəri hesablayırlar. aggregate funksiyalar aşağıdkılardır:
+SUBSTR() Mətinin istədiyiniz hissəsini kəsir VE S: . 
+Aggregate funksiyalar, SQL-də məlumatların toplanması və təhlil edilməsi üçün istifadə olunan funksiyalardır. Bu funksiyalar, bir məlumat qrupunu birləşdirib bir dəyəri hesablayırlar. aggregate funksiyalar aşağıdkılardır:
 
 SUM(): Bir sütundakı bütün dəyərlərin cəmini qaytarır.
 
@@ -201,4 +203,6 @@ BEFORE Triger: Bu triger, hansısa bir əməliyyatın icrasından əvvəl başla
 
 AFTER Triger: Bu triger, hansısa bir əməliyyat tamamlandıqdan sonra başlayır. Məsələn, bir sətirin dəyişdirilməsindən sonra məlumatları yeniləmək üçün istifadə edilə bilər. Bu triger, əməliyyat başa çatdıqdan sonra dəyişiklikləri idarə etmək üçün istifadə olunur.
 
-Trigerlər, verilənlər bazasında məhdudiyyətləri tətbiq etmək və daxili tənzimləmələri icra etmək üçün güclü alətlərdir. Müəyyən bir tədbir baş verdiyində, triger avtomatik olaraq icra olunur və təyin edilmiş PL/SQL kodu işlədir. Bu, verilənlər bazasının davranışını nizamlamaq və avtomatlaşdırmaq üçün əlverişli bir vasitədir. Job nədir? SQL dillərində, verilənlər bazasında avtomatik işləmək üçün tənzimləmə funksionallığı mövcuddur. Bu funksionallıq, belirli vaxt aralığında müəyyən SQL əməliyyatlarını avtomatik olaraq icra etmək üçün istifadə olunur. Bu, qarşıya alınan vəziyyətlər, həftəlik və ya aylıq hesablamalar, yeddi günlik məlumatların yığılması və s. üçün faydalı olur. Bu işləri icra etmək üçün verilənlər bazasında xüsusi iş tənzimləmə funksionallığı istifadə olunur.
+Trigerlər, verilənlər bazasında məhdudiyyətləri tətbiq etmək və daxili tənzimləmələri icra etmək üçün güclü alətlərdir. Müəyyən bir tədbir baş verdiyində, triger avtomatik olaraq icra olunur və təyin edilmiş PL/SQL kodu işlədir. Bu, verilənlər bazasının davranışını nizamlamaq və avtomatlaşdırmaq üçün əlverişli bir vasitədir. 
+
+Job nədir? SQL dillərində, verilənlər bazasında avtomatik işləmək üçün tənzimləmə funksionallığı mövcuddur. Bu funksionallıq, belirli vaxt aralığında müəyyən SQL əməliyyatlarını avtomatik olaraq icra etmək üçün istifadə olunur. Bu, qarşıya alınan vəziyyətlər, həftəlik və ya aylıq hesablamalar, yeddi günlik məlumatların yığılması və s. üçün faydalı olur. Bu işləri icra etmək üçün verilənlər bazasında xüsusi iş tənzimləmə funksionallığı istifadə olunur.
