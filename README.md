@@ -1,21 +1,55 @@
 # sql-and-pl-sqll
 
-SQL (Structured Query Language), verilənlər bazaları ilə əlaqə qurmaq və məlumatlara giriş etmək üçün istifadə olunan özəl dildir. SQL, verilənlər bazalarının yaradılması, dəyişdirilməsi, sorğulanması və idarə olunması üçün istifadə olunur. Bu dillə, məlumatların cədvəllərdə saxlanılması və bu cədvəllər arasında əlaqələrin qurulması üçün istifadə olunan əmrləri təyin edir. Əlavə olaraq, SQL, verilənlər bazasında indeksləmə, təhlil və optimizasiya kimi funksiyaların yerinə yetirilməsi üçün də istifadə olunur. Bu dil, müxtəlif verilənlər bazalarında - məsələn, MySQL, PostgreSQL, Microsoft SQL Server, Oracle Database kimi - istifadə olunur və geniş yayılmışdır. SQL commandaları yəni kateqoriyaları: DDL,DML,DRL,TCL DDL (Data Definition Language), verilənlər bazasının strukturlarını təyin etmək üçün istifadə olunan əmrləri ifadə edir. İş mühtində ən yayğın olan bir neçə DDL əmri:
+SQL (Structured Query Language), verilənlər bazaları ilə əlaqə qurmaq və məlumatlara giriş etmək üçün istifadə olunan özəl dildir. SQL, verilənlər bazalarının yaradılması, dəyişdirilməsi, sorğulanması və idarə olunması üçün istifadə olunur. Bu dillə, məlumatların cədvəllərdə saxlanılması və bu cədvəllər arasında əlaqələrin qurulması üçün istifadə olunan əmrləri təyin edir. Əlavə olaraq, SQL, verilənlər bazasında indeksləmə, təhlil və optimizasiya kimi funksiyaların yerinə yetirilməsi üçün də istifadə olunur. Bu dil, müxtəlif verilənlər bazalarında - məsələn, MySQL, PostgreSQL, Microsoft SQL Server, Oracle Database kimi - istifadə olunur və geniş yayılmışdır. SQL commandaları yəni kateqoriyaları: DDL,DML,DRL,TCL DDL (Data Definition Language), verilənlər bazasının strukturlarını təyin etmək üçün istifadə olunan əmrləri ifadə edir. 
+İş mühtində ən yayğın olan bir neçə DDL əmri:
 
 CREATE: Yeni verilənlər bazası obyektini yaradır. Məsələn, yeni bir cədvəl yaradılması üçün CREATE TABLE, yeni bir indeks yaratmaq üçün CREATE İNDEX kimi.
 ALTER: Mövcud verilənlər bazası obyektini dəyişdirir. Məsələn, bir cədvəlin sütunlarının dəyişdirilməsi üçün ALTER TABLE.
 DROP: Verilənlər bazası obyektini silir. Məsələn, bir cədvəlin silinməsi üçün DROP TABLE, bir indeksin silinməsi üçün DROP INDEX.
-TRUNCATE: Cədvəl içindəki bütün məlumatları silir, amma cədvəl özü silinmir, yalnız içindəki məlumatlar silinir. TCL (Transaction Control Language), tranzaksiyaların idarə edilməsi üçün istifadə olunan SQL əmrlərini ifadə edir. İş mühitində ən yaygın TCL əmrləri:
+TRUNCATE: Cədvəl içindəki bütün məlumatları silir, amma cədvəl özü silinmir, yalnız içindəki məlumatlar silinir. TCL (Transaction Control Language), tranzaksiyaların idarə edilməsi üçün istifadə olunan SQL əmrlərini ifadə edir.
+
+İş mühitində ən yaygın TCL əmrləri:
 COMMIT: Aktiv tranzaksiyanın dəyişikliklərini təsdiq edir. Bu əmr, tranzaksiyanın bütün dəyişikliklərini daimi hala gətirir və bazaya qeyd edilir.
 ROLLBACK: Aktiv tranzaksiyanın bütün dəyişikliklərini geri alır. Yəni, tranzaksiya ilə əlaqəli bütün dəyişiklikləri ləğv edir.
-SAVEPOINT: Tranzaksiya içində mövcud bir vəziyyəti xatırlayır. Bu, əgər bir xəta baş verərsə, tranzaksiyanın müvafiq bir nöqtəsindən davam etmək üçün istifadə olunur. Sonra, ROLLBACK əmrini bu xüsusi savepointə qədər etmək mümkündür. "DML" SQL-də "Data Manipulation Language"ın (Məlumatları İdarəetmə Dili) qısaltmasıdır. DML əsasən verilənlər bazasında məlumatları əlavə etmək, dəyişmək, silmək və ya sorğu etmək üçün istifadə olunur. İşte DML-in əsas əməlləri:
+SAVEPOINT: Tranzaksiya içində mövcud bir vəziyyəti xatırlayır. Bu, əgər bir xəta baş verərsə, tranzaksiyanın müvafiq bir nöqtəsindən davam etmək üçün istifadə olunur. Sonra, ROLLBACK əmrini bu xüsusi savepointə qədər etmək mümkündür. 
+"DML" SQL-də "Data Manipulation Language"ın (Məlumatları İdarəetmə Dili) qısaltmasıdır. DML əsasən verilənlər bazasında məlumatları əlavə etmək, dəyişmək, silmək və ya sorğu etmək üçün istifadə olunur. 
+İşte DML-in əsas əməlləri:
 INSERT: Yeni məlumatlar əlavə etmək üçün istifadə olunur.
 UPDATE: Mövcud məlumatları dəyişmək üçün istifadə olunur.
 DELETE: Məlumatları silmək üçün istifadə olunur.: Bu əməllər SQL-də verilənlərin dəyişdirilməsinə və sorğuya əsaslanan məlumatları almağa imkan verir.
 4 ."MERGE" SQL-də verilənlərin bir cütləşməsi və ya yenilənməsi əməllərini icra etmək üçün istifadə olunan bir əmrdir. Bu əmr, SQL Server, Oracle və digər bazaların bir çox tətbiqində mövcuddur. MERGE əmrini iki əsas məqsəd üçün istifadə edə bilərsiniz:
-
 Cütləşmə (MATCHED): İki cədvəl arasında uyğunluqları yoxlamaq və uyğunluq tapılarsa müvafiq əmrləri icra etmək.
-Yeniləmə (NOT MATCHED): İki cədvəl arasında uyğunluqları yoxlamaq və uyğunluq tapılmazsa yeni sətrləri əlavə etmək. DRL = SELECT: Məlumatları sorğu etmək üçün istifadə olunur.: Məlumat bazalarında "constraint" (məhdudlaşdırıcı) olaraq tanımlananlar, verilənlərin uyğunluğunu təmin etmək və bazadakı məlumatları qorumaq üçün istifadə olunan qaydalar və şərtlərdır. İşlədikləri funksiyalara görə müxtəlif növləri var:
+Yeniləmə (NOT MATCHED): İki cədvəl arasında uyğunluqları yoxlamaq və uyğunluq tapılmazsa yeni sətrləri əlavə etmək.
+DRL, SQL-də "Data Retrieval Language"ın (Məlumatların Alınma Dili) qısaltmasıdır. Bu, verilənlərin sorğulanması və almaq üçün istifadə olunan bir dil növüdür.
+
+SQL-də, verilənlərin əməliyyatları müxtəlif dil bölmələrinə bölünür və bu bölmələrdən biri də "Data Retrieval Language" yəni məlumatların alınma dili olan DRL-dir. DRL, verilənlərin alınması üçün istifadə olunan sorğu əməliyyatlarını daxil edir.
+
+Məsələn, bir verilənlər bazasından müəyyən bir cədvəldən məlumat almaq üçün bir DRL sorğusu istifadə edə bilərsiniz. Bu sorğu, müəyyən kriterlərə uyğun filtrlənmiş və ya sıralanmış məlumatları geri qaytarabilir.
+
+Nümunəvi bir DRL sorğusu:
+
+SELECT * FROM telebeler WHERE ixtisas = 'Kompüter Mühəndisliyi';
+
+
+Bu sorğu, "Kompüter Mühəndisliyi" ixtisasına sahib olan telebələrin məlumatlarını geri qaytarır.
+DRL əsasən SQL-də istifadə olunan bir hissədir. "Case when" ifadəsi, SQL-də müəyyən şərtlərə görə fərqli dəyərlər qaytarmaq üçün istifadə olunur. İf-else blokları ilə müqayisə oluna bilər. 
+"Case when" ifadəsi, məlumatları şərtlərə görə sıralamaq və onlara müvafiq dəyərlər təyin etmək üçün çox işlənir.
+
+Əgər bir SQL sorğusu yazarkən "case when" ifadəsindən istifadə etmək istəyirsinizsə, bunun nəzərə alınacağı tələbləri olacaq. Məsələn, bir məlumat bazasında mövcud olan müəyyən bir sütunun dəyərlərinə görə fərqli kateqoriyalar təyin etmək istəyirsinizsə, "case when" ifadəsindən istifadə edə bilərsiniz.
+
+Nümunə olaraq, bir restoran verilənlər bazasında sifarişlərin hazırlanma vaxtına görə fərqli olaraq hesablanan qiymətlər təyin etmək istəyirsinizsə, "case when" ifadəsindən istifadə edə bilərsiniz. Belə bir SQL sorğusu azərbaycan dilində aşağıdakı kimi ola bilər:
+
+SELECT sifariş_adı,
+       qiymət = CASE
+                  WHEN hazırlanma_vaxtı < 10 THEN 'Əlverişli qiymət'
+                  WHEN hazırlanma_vaxtı >= 10 AND hazırlanma_vaxtı < 20 THEN 'Orta qiymət'
+                  ELSE 'Yüksək qiymət'
+               END AS qiymət_kateqoriyası
+FROM sifarişlər;
+
+Bu sorğu, sifariş adlarını və onların hazırlanma vaxtına görə qiymət kateqoriyasını göstərir. İf-dəyər bloklarını təqdim edən "case when" ifadəsi, hər sətirdə mövcud olan sifarişin hazırlanma vaxtına görə uyğun qiymət kateqoriyasını təyin edir.
+
+: Məlumat bazalarında "constraint" (məhdudlaşdırıcı) olaraq tanımlananlar, verilənlərin uyğunluğunu təmin etmək və bazadakı məlumatları qorumaq üçün istifadə olunan qaydalar və şərtlərdır. İşlədikləri funksiyalara görə müxtəlif növləri var:
 Əsas məhdudlaşdırıcılar (Primary Key Constraints): Bir cədvəldə bir sütunun unikal olmasını və null olmamasını təmin edirlər. Bu, cədvəlin müəyyən bir sütunu tərəfindən təmsil edilən hər bir sətirin təyin edilməsinə imkan verir. Əsas məhdudlaşdırıcı sətirin təyin edilməmiş və ya bənzər sətirin olmamasını təmin edir.
 Xarici məhdudlaşdırıcılar (Foreign Key Constraints): Bu məhdudlaşdırıcılar iki cədvəl arasındakı əlaqəni müəyyən edir. Bir cədvəldəki bir sütunun dəyərləri, digər cədvəldəki əlaqəli sütunun dəyərlərinə əsaslanır. Buna əsasən, bir cədvəldəki sütunun dəyəri, digər cədvəldə mövcud olmalıdır və ya müəyyən dəyərlərlə uyğunlaşmalıdır.
 Bənzərlik məhdudlaşdırıcılar (Unique Constraints): Bir sütunda təkrarlanan dəyərləri qadağan edir. Bu, sütunda təkrarlanan dəyərləri saxlamaq qadağan olunur və bu sütunda unikal dəyərlər tələb olunur.
@@ -53,7 +87,8 @@ COUNT(): Bir sütundakı bütün dəyərlərin sayını qaytarır.
 
 MIN(): Bir sütundakı ən kiçik dəyəri qaytarır.
 
-MAX(): Bir sütundakı ən böyük dəyəri qaytarır. Analytic funksiyalar SQL-də məlumat analizini və sıralamağın daha qeyri-adi və yüksək səviyyəli üsullarını təklif edir. Bu funksiyalar, standart SQL dillərində daxili və ya xarici tətbiqlərdə əsas məlumatları işləmək üçün çox istifadə olunur. İşte bəzi əsas analitik funksiyalar:
+MAX(): Bir sütundakı ən böyük dəyəri qaytarır. 
+Analytic funksiyalar SQL-də məlumat analizini və sıralamağın daha qeyri-adi və yüksək səviyyəli üsullarını təklif edir. Bu funksiyalar, standart SQL dillərində daxili və ya xarici tətbiqlərdə əsas məlumatları işləmək üçün çox istifadə olunur. İşte bəzi əsas analitik funksiyalar:
 
 ROW_NUMBER(): Hər bir sətirə müəyyən bir qrup daxilində sıra nömrəsini əlavə edir.
 
