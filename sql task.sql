@@ -4,11 +4,11 @@ select * from departments;
 ---1--Manager id si null olan işçinin ad,soyad və nömrəsin ekrana çıxar
 select first_name,last_name,phone_number from employees where manager_id is null;
 
----2--Cədvəldə manager id=102 olan mştərinin job_id si AD_SU dəyiş
+---2--Cədvəldə manager id=102 olan müştərinin job_id si AD_SU dəyiş
 select * from employees  WHERE MANAGER_ID='102'   ;
 update employees set job_id='AD_SU' WHERE MANAGER_ID='102';
 
---3 	ən çox maaş alan 10 i?çinin adını və  soyadını qaytaracaq query yaz?n.
+--3 	ən çox maaş alan 10 işçinin adını və  soyadını qaytaracaq query yaz?n.
 select salary,first_name,last_name from employees where rownum <=10 order by salary desc;
 --4  -3-ci ən yüksək maaş alan işçinin adını qaytaracaq query yazın. 
 select first_name,salary from employees order by salary desc;
@@ -56,7 +56,7 @@ SELECT first_name, last_name, salary
  WHERE commission_pct IS NULL OR manager_id IS NULL;
  
  
- --8  departaments v? employees cədvəllərini əlaqələndirib, müştərinin ad və department adını çıxarın
+ --8  departaments və employees cədvəllərini əlaqələndirib, müştərinin ad və department adını çıxarın
 
 SELECT e.first_name, D.DEPARTMENT_NAME
   FROM departments d JOIN employees e ON D.DEPARTMENT_ID = E.DEPARTMENT_ID;
@@ -72,7 +72,7 @@ SELECT e.first_name, D.DEPARTMENT_NAME
 
 SELECT first_name || ' ' || last_name AS tam_ad FROM employees;
 
- --11 Manager_id-si 100 v? ya 200 olan işçilərin əmək haqqına görə azdan çoxadoğru sıralanmış olsun.
+ --11 Manager_id-si 100 ve ya 200 olan işçilərin əmək haqqına görə azdan çoxadoğru sıralanmış olsun.
 
   SELECT first_name, salary, manager_id FROM employees  WHERE manager_id in ('100','200') ORDER BY salary;
 
@@ -111,12 +111,19 @@ select upper(first_name),lower(last_name) from employees;
 
 select count(*) from employees where department_id=90;
 -- 21.	40 nömrəli departamantdə çalşan işçilərin ortalama maaşnndan daha çox ortalama maaşı olan olan departamentləri göstərin.?
-
 select avg(salary),department_id from employees group by department_id 
 having avg(salary) > (select avg(salary) from hr.employees where department_id = 40);
 ---22 maaşı 6000 dəm asagi olan əasagi maasliə,6000den-10000 arası orta maasli, 10000dən çox olan yüksek maasli qeydi olan sütun yarad?n. 
 select first_name,last_name,salary,
-case when salary <6000 then 'a?a?? maa?l?' 
-when salary >=6000 and salary <10000 then 'orta maa?l?' 
-when  salary >=10000 then 'yuksek maa?l?'end maas from employees;
+case when salary <6000 then 'asagi maasli' 
+when salary >=6000 and salary <10000 then 'orta maaşlı' 
+when  salary >=10000 then 'yuksek maaşlı'end maas from employees;
 
+--23 İşçinin ad soyad və departament adını ekrana çıxarın hansı ki, adı S lə və maaşı 7000 dən böyük olsun
+select a.first_name, a.last_name,salary, b.department_name from employees a join departments b on a.department_id=b.department_id where a.first_name like 'S%'
+and a.salary>7000
+---24 Her departament uzre maksimum maasi cixaran query yazin. (Sutun olaraq maas ve departament adi )
+select max(a.salary), b.department_name from employees a join departments b on a.department_id=b.department_id --where 
+group by b.department_name;
+--25  Employees cedvelinde komissiyasi olan iscilere komissiya var , olmyanlara ise komissiya yoxdur qeyd ile query yazin
+select first_name,last_name ,case when commission_pct is null then 'komissiya yoxdur' else 'komissiyasi var' end case_when from employees ;
