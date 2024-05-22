@@ -81,11 +81,11 @@ SELECT first_name || ' ' || last_name AS tam_ad FROM employees;
 SELECT DEPARTMENT_ID,LISTAGG(first_name, ' , ') WITHIN GROUP (ORDER BY DEPARTMENT_ID) AS name,
 LISTAGG(last_name, ' , ') WITHIN GROUP (ORDER BY DEPARTMENT_ID) AS surname  from employees group by DEPARTMENT_ID ;
 
---13  əmək haqqi 8000-dən  az olan işçilərin məlumatarını əmək haqqına görə çoxdan aza do?ru siralay?n
+--13  əmək haqqi 8000-dən  az olan işçilərin məlumatarını əmək haqqına görə çoxdan aza dogru siralayin
 
   SELECT * FROM employees WHERE salary < 8000 ORDER BY salary DESC;
 
- --14 Ad? “N” ilə baslayan işçilərin siyahisin ekrana cixar
+ --14 Adi “N” ilə baslayan işçilərin siyahisin ekrana cixar
 
 SELECT * FROM employees WHERE first_name LIKE 'N%';
 
@@ -94,7 +94,7 @@ SELECT * FROM employees WHERE SUBSTR (first_name, 1, 1) = 'N';
  --15  her job id uzre minimum emek haqqini ekrana cixar
 
   SELECT MIN (salary), job_id FROM employees GROUP BY job_id;
- --16  hər job id üzrə ümumi əmək haqqını hesablayin və ortalama əmək haqqi 6000dən cox olan job id-sini gost?rin.
+ --16  hər job id üzrə ümumi əmək haqqını hesablayin və ortalama əmək haqqi 6000dən cox olan job id-sini gosterin.
 
   SELECT AVG (salary), SUM (salary), job_id  FROM employees GROUP BY job_id HAVING AVG (salary) > 6000;
   
@@ -105,15 +105,15 @@ select * from employees where salary > (select max(salary) from employees where 
 
 ---18 telefon  nömrəsi 5le baslayan iscilerin siyahisin cixarin
 select * from employees where phone_number like '5%'
----19 aadlarin hər birini boyuk soyadlari ise kicik herfle ekrana cixarin
+---19 Adlarin hər birini boyuk soyadlari ise kicik herfle ekrana cixarin
 select upper(first_name),lower(last_name) from employees;
 ---20 departamenti 90 olan işçilərin sayini tapn
 
 select count(*) from employees where department_id=90;
--- 21.	40 nömrəli departamantdə çalşan işçilərin ortalama maaşnndan daha çox ortalama maaşı olan olan departamentləri göstərin.?
+-- 21.	40 nömrəli departamantdə çalşan işçilərin ortalama maaşndan daha çox ortalama maaşı olan olan departamentləri göstərin.?
 select avg(salary),department_id from employees group by department_id 
 having avg(salary) > (select avg(salary) from hr.employees where department_id = 40);
----22 maaşı 6000 dəm asagi olan əasagi maasliə,6000den-10000 arası orta maasli, 10000dən çox olan yüksek maasli qeydi olan sütun yarad?n. 
+---22 maaşı 6000 dəm asagi olan asagi maasli,6000den-10000 arası orta maasli, 10000dən çox olan yüksek maasli qeydi olan sütun yaradin. 
 select first_name,last_name,salary,
 case when salary <6000 then 'asagi maasli' 
 when salary >=6000 and salary <10000 then 'orta maaşlı' 
@@ -125,5 +125,19 @@ and a.salary>7000
 ---24 Her departament uzre maksimum maasi cixaran query yazin. (Sutun olaraq maas ve departament adi )
 select max(a.salary), b.department_name from employees a join departments b on a.department_id=b.department_id --where 
 group by b.department_name;
---25  Employees cedvelinde komissiyasi olan iscilere komissiya var , olmyanlara ise komissiya yoxdur qeyd ile query yazin
+--25  Employees cedvelinde komissiyasi olan iscilere komissiya var , olmayanlara ise komissiya yoxdur qeyd ile query yazin
 select first_name,last_name ,case when commission_pct is null then 'komissiya yoxdur' else 'komissiyasi var' end case_when from employees ;
+--27 Neçə işçinin adı A ilə başlayıb r lə bitir
+select * from employees where first_name like 'A%r' 
+--28 departament id=60 olan işçilərin sayı nə qədərdir?
+select count(*) from employees where department_id='60'
+---29 department_id=100 olan işçilərin maaşını həmin departament üzrə minimum maaşına çevirin.
+select employee_id, first_name,last_name,salary,first_value(salary) OVER (ORDER BY salary asc) as first_salary  from employees   where department_id=100
+---30 Hər departament üzrə maxsimum maaş çıxaran query yazın (analytic funksiya ilə)
+ select * from (select
+employee_id,(first_name||' '||last_name),salary,--department_id,
+dense_rank() over( partition by department_id order by salary desc) myrank
+from EMPLOYEES) where myrank=1  ;
+ 
+
+ 
