@@ -14,15 +14,7 @@ update employees set job_id='AD_SU' WHERE MANAGER_ID='102';
 
 ---	ən çox maaş alan 10 işçinin adını və  soyadını qaytaracaq query yazın.
 select salary,first_name,last_name from employees where rownum <=10 order by salary desc;
----  -3-ci ən yüksək maaş alan işçinin adını qaytaracaq query yazın. 
-select first_name,salary from employees order by salary desc;
 
-SELECT *
-  FROM (SELECT first_name,
-               salary,
-               DENSE_RANK () OVER (ORDER BY salary DESC) AS rownumm
-          FROM employees)
- WHERE rownumm = 3;
  
  ---  Adının uzunlugu 5-dən boyuk və  soyadının uzunlugu 6-dan boyuk olan və -- maaşı 1500-dən boyuk olan iscilərin adını, soyadını və maaşını qaytaracaq query yazn.
 
@@ -33,7 +25,7 @@ SELECT first_name, last_name, salary
   
  WHERE LENGTH (first_name) > 5 and LENGTH (last_name) > 6;
  
-   --- Manager_id-si null olmayan, Department_id 100 və ya 101 olan, job_id-si ad_pres olmayan işçilərin adını soyadını və maaşını maaşa görə sıralama ilə çıxsrın.
+   --- Manager_id-si null olmayan, Department_id 100 və ya 101 olan, job_id-si AD_PRES olmayan işçilərin adını soyadını və maaşını maaşa görə sıralama ilə çıxsrın.
 
  SELECT first_name,
                  last_name,
@@ -55,18 +47,7 @@ SELECT first_name, last_name, salary
           FROM employees
          WHERE salary BETWEEN 2000 AND 3000)
  WHERE commission_pct IS NULL OR manager_id IS NULL;
- 
- 
- ---  departaments və employees cədvəllərini əlaqələndirib, müştərinin ad və department adını çıxarın
 
-SELECT e.first_name, D.DEPARTMENT_NAME
-  FROM departments d JOIN employees e ON D.DEPARTMENT_ID = E.DEPARTMENT_ID;
-  
---- departament adi Fin le başlamayan işçilərin adını çıxarın
-
-SELECT e.first_name, D.DEPARTMENT_NAME
-  FROM departments d JOIN employees e ON D.DEPARTMENT_ID = E.DEPARTMENT_ID
- WHERE D.DEPARTMENT_ID NOT LIKE 'Fin%';
 
  --- Ad və soyad sutunlarını concat funksiyasiz birləşdirib tam ad olaraq gostərin, lakin ad və soyad arasında bosluq olsun
 
@@ -77,10 +58,6 @@ SELECT first_name || ' ' || last_name AS tam_ad FROM employees;
 
   SELECT first_name, salary, manager_id FROM employees  WHERE manager_id in ('100','200') ORDER BY salary;
 
---- departamentlərinə görə muştərilərin adini və soyadin eyni sətirə yiğin
-
-SELECT DEPARTMENT_ID,LISTAGG(first_name, ' , ') WITHIN GROUP (ORDER BY DEPARTMENT_ID) AS name,
-LISTAGG(last_name, ' , ') WITHIN GROUP (ORDER BY DEPARTMENT_ID) AS surname  from employees group by DEPARTMENT_ID ;
 
 ---  əmək haqqi 8000-dən  az olan işçilərin məlumatarını əmək haqqına görə çoxdan aza dogru siralayin
 
@@ -104,14 +81,17 @@ SELECT * FROM employees WHERE SUBSTR (first_name, 1, 1) = 'N';
 
 --- telefon  nömrəsi 5le baslayan iscilerin siyahisin cixarin
   select * from employees where phone_number like '5%'
---- Adlarin hər birini boyuk soyadlari ise kicik herfle ekrana cixarin
+     
+--- Adlarin hər birini boyuk soyadlari ise kiçik herfle ekrana çixarin
   select upper(first_name),lower(last_name) from employees;
---- departamenti 90 olan işçilərin sayini tapn
 
-  select count(*) from employees where department_id=90;
+--- departamenti 90 olan işçilərin sayini tapn
+select count(*) from employees where department_id=90;
+
 ---	40 nömrəli departamantdə çalışan işçilərin ortalama maaşndan daha çox ortalama maaşı olan  departamentləri göstərin.?
 select avg(salary),department_id from employees group by department_id 
 having avg(salary) > (select avg(salary) from hr.employees where department_id = 40);
+
 --- maaşı 6000 dən aşagi olan aşagi maaşli,6000den-10000 arası orta maaşli, 10000dən çox olan yüksek maaşli qeydi olan sütun yaradin. 
 select first_name,last_name,salary,
 case when salary <6000 then 'asagi maasli' 
@@ -121,29 +101,62 @@ when  salary >=10000 then 'yuksek maaşlı'end maas from employees;
 --- İşçinin ad soyad və departament adını ekrana çıxarın hansı ki, adı S lə və maaşı 7000 dən böyük olsun
 select a.first_name, a.last_name,salary, b.department_name from employees a join departments b on a.department_id=b.department_id where a.first_name like 'S%'
 and a.salary>7000
---- Her departament uzre maksimum maaşi çixaran query yazin. (Sutun olaraq maaş ve departament adi )
-select max(a.salary), b.department_name from employees a join departments b on a.department_id=b.department_id 
-group by b.department_name;
+
+
 ---  Employees cedvelinde komissiyasi olan iscilere komissiya var , olmayanlara ise komissiya yoxdur qeyd ile query yazin
 select first_name,last_name ,case when commission_pct is null then 'komissiya yoxdur' else 'komissiyasi var' end case_when from employees ;
+
 --- Neçə işçinin adı A ilə başlayıb r lə bitir
 select * from employees where first_name like 'A%r' 
+   
 --- departament id=60 olan işçilərin sayı nə qədərdir?
 select count(*) from employees where department_id='60'
+   
 --- department_id=100 olan işçilərin maaşını həmin departament üzrə minimum maaşına çevirin.
 select employee_id, first_name,last_name,salary,first_value(salary) OVER (ORDER BY salary asc) as first_salary  from employees   where department_id=100
---- Hər departament üzrə maksimum maaş çıxaran query yazın (analytic funksiya ilə)
- select * from (select
-employee_id,(first_name||' '||last_name),salary,--department_id,
-dense_rank() over( partition by department_id order by salary desc) myrank
-from EMPLOYEES) where myrank=1  ;
+   
+
 --- Bütün maaşların 20 faiz azaldılmasından alınan nəticə kəsr hissə olmadan  ekrana çıxarın
 select round(( salary *0.8)) from employees;
+
 ---maaşlardan 22000 azaldın və nəticə həmişə müsbət olmalıdır
 select abs(salary-20000) from employees;
+
 --- maaş sütununu 3 böl əgər qalıq varsa yaz 'QALIQ yoxdur' əks halda 'Qalıq var' ekrana çıxarın
 select case when mod(salary,3)=0 then 'qalıq yoxdur'
 else 'qalıq var' end , salary,mod(salary,3) from employees;
- 
 
- 
+---  -3-ci ən yüksək maaş alan işçinin adını qaytaracaq query yazın. 
+select first_name,salary from employees order by salary desc;
+
+SELECT *
+  FROM (SELECT first_name,
+               salary,
+               DENSE_RANK () OVER (ORDER BY salary DESC) AS rownumm
+          FROM employees)
+ WHERE rownumm = 3; 
+--- departamentlərinə görə muştərilərin adini və soyadin eyni sətirə yiğin
+
+SELECT DEPARTMENT_ID,LISTAGG(first_name, ' , ') WITHIN GROUP (ORDER BY DEPARTMENT_ID) AS name,
+LISTAGG(last_name, ' , ') WITHIN GROUP (ORDER BY DEPARTMENT_ID) AS surname  from employees group by DEPARTMENT_ID ;
+ ---  departaments və employees cədvəllərini əlaqələndirib, müştərinin ad və department adını çıxarın
+
+SELECT e.first_name, D.DEPARTMENT_NAME
+  FROM departments d JOIN employees e ON D.DEPARTMENT_ID = E.DEPARTMENT_ID;
+   
+--- departament adi Fin le başlamayan işçilərin adını çıxarın
+
+SELECT e.first_name, D.DEPARTMENT_NAME
+  FROM departments d JOIN employees e ON D.DEPARTMENT_ID = E.DEPARTMENT_ID
+ WHERE D.DEPARTMENT_ID NOT LIKE 'Fin%';
+
+   
+--- Her departament uzre maksimum maaşi çixaran query yazin. (Sutun olaraq maaş ve departament adi )
+select max(a.salary), b.department_name from employees a join departments b on a.department_id=b.department_id 
+group by b.department_name;
+
+--- Hər departament üzrə maksimum maaş çıxaran query yazın (analytic funksiya ilə)
+ select * from (select
+employee_id,(first_name||' '||last_name),salary,
+dense_rank() over( partition by department_id order by salary desc) myrank
+from EMPLOYEES) where myrank=1  ;
