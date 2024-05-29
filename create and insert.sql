@@ -2,30 +2,30 @@ CREATE DATABASE HR;
 USE HR;
 CREATE TABLE employees  
     ( employee_id    NUMBER(6)  
-                     CONSTRAINT emp_emp_id_pk  
+                     CONSTRAINT emp_emp_id_pk1  
                         PRIMARY KEY 
     , first_name     VARCHAR2(20)  
     , last_name      VARCHAR2(25)  
-	             CONSTRAINT emp_last_name_nn  NOT NULL  
+	             CONSTRAINT emp_last_name_nn1  NOT NULL  
     , email          VARCHAR2(25)  
-	             CONSTRAINT emp_email_nn  NOT NULL  
+	             CONSTRAINT emp_email_nn1  NOT NULL  
     , CONSTRAINT     emp_email_uk  
                      UNIQUE (email)  
     , phone_number   VARCHAR2(20)  
     , hire_date      DATE  
-	             CONSTRAINT emp_hire_date_nn  NOT NULL  
+	             CONSTRAINT emp_hire_date_nn1  NOT NULL  
     , job_id         VARCHAR2(10)  
-	             CONSTRAINT emp_job_nn  NOT NULL  
+	             CONSTRAINT emp_job_nn1  NOT NULL  
     , salary         NUMBER(8,2)  
-                     CONSTRAINT emp_salary_min  
+                     CONSTRAINT emp_salary_min1  
                         CHECK (salary > 0)  
     , commission_pct NUMBER(2,2)  
     , manager_id     NUMBER(6)  
-    ,                CONSTRAINT emp_manager_fk  
+    ,                CONSTRAINT emp_manager_fk1  
                         FOREIGN KEY (manager_id)  
                         REFERENCES employees 
     , department_id  NUMBER(4)  
-    ,                CONSTRAINT emp_dept_fk  
+    ,                CONSTRAINT emp_dept_fk1  
                         FOREIGN KEY (department_id)  
                         REFERENCES departments 
     );
@@ -34,13 +34,13 @@ CREATE TABLE employees
     
     CREATE TABLE departments  
     ( department_id    NUMBER(4) 
-                       CONSTRAINT dept_id_pk  
+                       CONSTRAINT dept_id_pk1  
        		          PRIMARY KEY 
     , department_name  VARCHAR2(30)  
-	               CONSTRAINT dept_name_nn  NOT NULL  
+	               CONSTRAINT dept_name_nn1  NOT NULL  
     , manager_id       NUMBER(6)  
     , location_id      NUMBER(4)  
-    ,                  CONSTRAINT dept_loc_fk  
+    ,                  CONSTRAINT dept_loc_fk1  
        		          FOREIGN KEY (location_id)  
         	          REFERENCES locations (location_id)  
     )
