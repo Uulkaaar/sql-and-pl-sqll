@@ -23,7 +23,12 @@ Yeniləmə (NOT MATCHED): İki cədvəl arasında uyğunluqları yoxlamaq və uy
 DRL, SQL-də "Data Retrieval Language"ın (Məlumatların Alınma Dili) qısaltmasıdır. Bu, verilənlərin sorğulanması və almaq üçün istifadə olunan bir dil növüdür.
 
 SQL-də, verilənlərin əməliyyatları müxtəlif dil bölmələrinə bölünür və bu bölmələrdən biri də "Data Retrieval Language" yəni məlumatların alınma dili olan DRL-dir. DRL, verilənlərin alınması üçün istifadə olunan sorğu əməliyyatlarını daxil edir.
-
+: Məlumat bazalarında "constraint" (məhdudlaşdırıcı) olaraq tanımlananlar, verilənlərin uyğunluğunu təmin etmək və bazadakı məlumatları qorumaq üçün istifadə olunan qaydalar və şərtlərdır. İşlədikləri funksiyalara görə müxtəlif növləri var:
+Əsas məhdudlaşdırıcılar (Primary Key Constraints): Bir cədvəldə bir sütunun unikal olmasını və null olmamasını təmin edirlər. Bu, cədvəlin müəyyən bir sütunu tərəfindən təmsil edilən hər bir sətirin təyin edilməsinə imkan verir. Əsas məhdudlaşdırıcı sətirin təyin edilməmiş və ya bənzər sətirin olmamasını təmin edir.
+Xarici məhdudlaşdırıcılar (Foreign Key Constraints): Bu məhdudlaşdırıcılar iki cədvəl arasındakı əlaqəni müəyyən edir. Bir cədvəldəki bir sütunun dəyərləri, digər cədvəldəki əlaqəli sütunun dəyərlərinə əsaslanır. Buna əsasən, bir cədvəldəki sütunun dəyəri, digər cədvəldə mövcud olmalıdır və ya müəyyən dəyərlərlə uyğunlaşmalıdır.
+Bənzərlik məhdudlaşdırıcılar (Unique Constraints): Bir sütunda təkrarlanan dəyərləri qadağan edir. Bu, sütunda təkrarlanan dəyərləri saxlamaq qadağan olunur və bu sütunda unikal dəyərlər tələb olunur.
+Null dəyəri məhdudlaşdırıcılar (Check Constraints): Bir sütunun dəyərini yoxlamaq üçün istifadə olunur. Məsələn, bir sütunda qəbul edilə biləcək maksimum və minimum dəyərləri təyin edə bilərsiniz.
+Qeyri-aktiv məhdudlaşdırıcılar (Inactive Constraints): Bu, məhdudlaşdırıcıları müvəqqəti olaraq silmək və ya aktivləşdirmək üçün istifadə olunan bir növ məhdudlaşdırıcıdır. Bu məhdudlaşdırıcılar verilənlər bazasının inteqrasiyasını və düzgün funksionallaşmasını təmin etmək üçün əhəmiyyətli alətlərdir. Yenidən məlumat bazasının konsistensiyasını və məlumatların doğruluğunu təmin etməyə kömək edirlər.
 Məsələn, bir verilənlər bazasından müəyyən bir cədvəldən məlumat almaq üçün bir DRL sorğusu istifadə edə bilərsiniz. Bu sorğu, müəyyən kriterlərə uyğun filtrlənmiş və ya sıralanmış məlumatları geri qaytarabilir.
 
 Nümunəvi bir DRL sorğusu:
@@ -49,12 +54,7 @@ FROM sifarişlər;
 
 Bu sorğu, sifariş adlarını və onların hazırlanma vaxtına görə qiymət kateqoriyasını göstərir. İf-dəyər bloklarını təqdim edən "case when" ifadəsi, hər sətirdə mövcud olan sifarişin hazırlanma vaxtına görə uyğun qiymət kateqoriyasını təyin edir.
 
-: Məlumat bazalarında "constraint" (məhdudlaşdırıcı) olaraq tanımlananlar, verilənlərin uyğunluğunu təmin etmək və bazadakı məlumatları qorumaq üçün istifadə olunan qaydalar və şərtlərdır. İşlədikləri funksiyalara görə müxtəlif növləri var:
-Əsas məhdudlaşdırıcılar (Primary Key Constraints): Bir cədvəldə bir sütunun unikal olmasını və null olmamasını təmin edirlər. Bu, cədvəlin müəyyən bir sütunu tərəfindən təmsil edilən hər bir sətirin təyin edilməsinə imkan verir. Əsas məhdudlaşdırıcı sətirin təyin edilməmiş və ya bənzər sətirin olmamasını təmin edir.
-Xarici məhdudlaşdırıcılar (Foreign Key Constraints): Bu məhdudlaşdırıcılar iki cədvəl arasındakı əlaqəni müəyyən edir. Bir cədvəldəki bir sütunun dəyərləri, digər cədvəldəki əlaqəli sütunun dəyərlərinə əsaslanır. Buna əsasən, bir cədvəldəki sütunun dəyəri, digər cədvəldə mövcud olmalıdır və ya müəyyən dəyərlərlə uyğunlaşmalıdır.
-Bənzərlik məhdudlaşdırıcılar (Unique Constraints): Bir sütunda təkrarlanan dəyərləri qadağan edir. Bu, sütunda təkrarlanan dəyərləri saxlamaq qadağan olunur və bu sütunda unikal dəyərlər tələb olunur.
-Null dəyəri məhdudlaşdırıcılar (Check Constraints): Bir sütunun dəyərini yoxlamaq üçün istifadə olunur. Məsələn, bir sütunda qəbul edilə biləcək maksimum və minimum dəyərləri təyin edə bilərsiniz.
-Qeyri-aktiv məhdudlaşdırıcılar (Inactive Constraints): Bu, məhdudlaşdırıcıları müvəqqəti olaraq silmək və ya aktivləşdirmək üçün istifadə olunan bir növ məhdudlaşdırıcıdır. Bu məhdudlaşdırıcılar verilənlər bazasının inteqrasiyasını və düzgün funksionallaşmasını təmin etmək üçün əhəmiyyətli alətlərdir. Yenidən məlumat bazasının konsistensiyasını və məlumatların doğruluğunu təmin etməyə kömək edirlər.
+
 SQL'də single-row funksiyalar, tək bir sətirə təsir edən və nəticədə tək bir dəyər qaytarən funksiyalardır. Bu funksiyalar, məlumatlara tətbiq edildikdə, hər bir sətir üçün ayrı-ayrı işləyir. single-row funksiyaların bir siyahısı:
 
 ABS(): Ədədin mutləq dəyərini qaytarır.
