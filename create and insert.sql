@@ -9,7 +9,7 @@ CREATE TABLE employees
 	             CONSTRAINT emp_last_name_nn1  NOT NULL  
     , email          VARCHAR2(25)  
 	             CONSTRAINT emp_email_nn1  NOT NULL  
-    , CONSTRAINT     emp_email_uk  
+    , CONSTRAINT     emp_email_uk1  
                      UNIQUE (email)  
     , phone_number   VARCHAR2(20)  
     , hire_date      DATE  
