@@ -69,6 +69,9 @@ SELECT * FROM employees WHERE first_name LIKE 'N%';
 
 SELECT * FROM employees WHERE SUBSTR (first_name, 1, 1) = 'N';
 
+---Hər departamentin ortalama əmək haqqını tapın hansı ki, ortalama əmək haqları 5000 dən bpyük olanlar ekrana çıxarın.(kəsr olanlar vergüldən sonra 2 ədəd yuvarlaqlaşdırın)
+select round(avg(salary),2) ,department_id from employees group by department_id having avg(salary)>5000
+   
  ---  her job id uzre minimum əmək haqqini ekrana cixar
 
   SELECT MIN (salary), job_id FROM employees GROUP BY job_id;
